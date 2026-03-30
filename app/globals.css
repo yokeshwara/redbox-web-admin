@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 99%;
+    --foreground: 0 0% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
+    --primary: 0 84% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 71% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 93%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 84% 54%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 88%;
+    --input: 0 0% 97%;
+    --ring: 0 84% 54%;
+    --chart-1: 0 84% 54%;
+    --chart-2: 220 70% 50%;
+    --chart-3: 160 60% 45%;
+    --chart-4: 30 80% 55%;
+    --chart-5: 280 65% 60%;
+    --radius: 0.75rem;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 25%;
+    --sidebar-primary: 0 84% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 84% 54%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 88%;
+    --sidebar-ring: 0 84% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .input-field {
+    @apply w-full px-4 py-3 bg-white border-2 border-primary/20 rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-200 shadow-sm hover:shadow-md hover:border-primary/40;
+  }
+
+  .input-field-light {
+    @apply w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/40 focus:border-white/60 transition-all duration-200 shadow-sm;
+  }
+
+  .input-field-danger {
+    @apply w-full px-4 py-3 bg-red-50 border-2 border-red-200 rounded-lg text-red-900 placeholder-red-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-500 transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+
+  .input-label {
+    @apply block text-sm font-semibold text-foreground mb-2;
+  }
+
+  .form-group {
+    @apply space-y-2;
+  }
+
+  @supports (overflow-y: auto) {
+    select {
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .modal-card {
+      @apply max-h-[95vh] overflow-y-auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-attachment: local, local;
+      background-repeat: no-repeat;
+      background-position: right 0.5em center, right 0.5em center;
+      padding-right: 2em;
+    }
+  }
+
+  .modal-header {
+    @apply sticky top-0 flex items-center justify-between p-6 border-b border-border bg-gradient-to-r from-primary to-secondary text-white z-10;
+  }
+
+  .modal-card {
+    @apply bg-card border border-border rounded-2xl shadow-xl;
+  }
+
+  .btn-primary {
+    @apply px-6 py-2.5 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-lg font-semibold hover:shadow-lg transition-all duration-200 hover:scale-105;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-2.5 bg-muted text-foreground rounded-lg font-semibold hover:bg-muted hover:shadow-md transition-all duration-200;
+  }
+
+  .section-title {
+    @apply text-lg font-bold text-foreground mb-4 flex items-center gap-2;
+  }
+
+  .card-header {
+    @apply flex items-center gap-3 mb-4 pb-4 border-b border-border;
+  }
+
+  .badge-success {
+    @apply px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700;
+  }
+
+  .badge-danger {
+    @apply px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700;
+  }
+
+  .badge-warning {
+    @apply px-3 py-1 rounded-full text-xs font-bold bg-yellow-100 text-yellow-700;
+  }
+
+  .badge-primary {
+    @apply px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-primary/20 to-secondary/20 text-primary font-semibold;
+  }
+
+  .gradient-header {
+    @apply bg-gradient-to-r from-primary via-primary to-secondary text-white;
+  }
+
+  .gradient-section {
+    @apply bg-gradient-to-br from-primary/5 to-secondary/5;
+  }
+
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+}
