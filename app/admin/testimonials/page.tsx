@@ -248,7 +248,7 @@ export default function TestimonialsPage() {
     {
       header: 'Actions',
       accessor: 'id',
-      width: '180px',
+      width: '80px',
       render: (value: string, row: any) => (
         <div className="flex items-center gap-2">
           <button
@@ -362,8 +362,7 @@ export default function TestimonialsPage() {
             <DataTable
               columns={columns}
               data={paginatedTestimonials}
-              onEdit={() => {}}
-              onDelete={() => {}}
+            
             />
           </div>
         )}

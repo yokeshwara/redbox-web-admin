@@ -48,11 +48,11 @@ const navItems: NavItem[] = [
       { href: '/admin/branches', label: 'Branches', icon: <Store size={16} /> },
       { href: '/admin/facilities', label: 'Branch Facilities', icon: <Zap size={16} /> },
       { href: '/admin/branch-reviews', label: 'Branch Reviews', icon: <Star size={16} /> },
-      { href: '/admin/delivery-platforms', label: 'Delivery Platforms', icon: <Zap size={16} /> },
-      { href: '/admin/menu-categories', label: 'Menu Categories', icon: <Tag size={16} /> },
-      { href: '/admin/menu', label: 'Menu Items', icon: <UtensilsCrossed size={16} /> },
-      { href: '/admin/menu-tags', label: 'Menu Tags', icon: <Tag size={16} /> },
-      { href: '/admin/menu-addons', label: 'Menu Add-ons', icon: <Zap size={16} /> },
+      // { href: '/admin/delivery-platforms', label: 'Delivery Platforms', icon: <Zap size={16} /> },
+      // { href: '/admin/menu-categories', label: 'Menu Categories', icon: <Tag size={16} /> },
+      // { href: '/admin/menu', label: 'Menu Items', icon: <UtensilsCrossed size={16} /> },
+      // { href: '/admin/menu-tags', label: 'Menu Tags', icon: <Tag size={16} /> },
+      // { href: '/admin/menu-addons', label: 'Menu Add-ons', icon: <Zap size={16} /> },
     ]
   },
 
@@ -61,26 +61,26 @@ const navItems: NavItem[] = [
     label: 'Bookings',
     icon: <Calendar size={20} />,
     submenu: [
-      { href: '/admin/reservations', label: 'Reservations', icon: <Calendar size={16} /> },
-      { href: '/admin/reservation-history', label: 'Status History', icon: <Clock size={16} /> },
-      { href: '/admin/events', label: 'Events', icon: <Calendar size={16} /> },
-      { href: '/admin/event-bookings', label: 'Event Bookings', icon: <Calendar size={16} /> },
-      { href: '/admin/reservations-events', label: 'Event Reservations', icon: <Calendar size={16} /> },
+      // { href: '/admin/reservations', label: 'Reservations', icon: <Calendar size={16} /> },
+      // { href: '/admin/reservation-history', label: 'Status History', icon: <Clock size={16} /> },
+      // { href: '/admin/events', label: 'Events', icon: <Calendar size={16} /> },
+      // { href: '/admin/event-bookings', label: 'Event Bookings', icon: <Calendar size={16} /> },
+      // { href: '/admin/reservations-events', label: 'Event Reservations', icon: <Calendar size={16} /> },
       { href: '/admin/catering-requests-events', label: 'Event Catering', icon: <Briefcase size={16} /> },
     ]
   },
 
   // Content
-  {
-    label: 'Content',
-    icon: <BookOpen size={20} />,
-    submenu: [
-      { href: '/admin/blogs', label: 'Blog Posts', icon: <BookOpen size={16} /> },
-      { href: '/admin/blog-categories', label: 'Blog Categories', icon: <Tag size={16} /> },
-      { href: '/admin/blog-tags', label: 'Blog Tags', icon: <Tag size={16} /> },
-      { href: '/admin/media-library', label: 'Media Library', icon: <ImageIcon size={16} /> },
-    ]
-  },
+  // {
+  //   label: 'Content',
+  //   icon: <BookOpen size={20} />,
+  //   submenu: [
+  //     { href: '/admin/blogs', label: 'Blog Posts', icon: <BookOpen size={16} /> },
+  //     { href: '/admin/blog-categories', label: 'Blog Categories', icon: <Tag size={16} /> },
+  //     { href: '/admin/blog-tags', label: 'Blog Tags', icon: <Tag size={16} /> },
+  //     { href: '/admin/media-library', label: 'Media Library', icon: <ImageIcon size={16} /> },
+  //   ]
+  // },
 
   // CRM
   {
@@ -90,20 +90,20 @@ const navItems: NavItem[] = [
       { href: '/admin/contact-enquiry', label: 'Contact Inquiries', icon: <Bell size={16} />, badge: '3', badgeColor: 'bg-orange-500' },
       { href: '/admin/franchises', label: 'Franchise Enquiries', icon: <Briefcase size={16} />, badge: '5', badgeColor: 'bg-orange-500' },
       { href: '/admin/careers', label: 'Career Applications', icon: <Briefcase size={16} /> },
-      { href: '/admin/customer-reviews', label: 'Customer Reviews', icon: <Star size={16} /> },
+      // { href: '/admin/customer-reviews', label: 'Customer Reviews', icon: <Star size={16} /> },
     ]
   },
 
   // Marketing
-  {
-    label: 'Marketing',
-    icon: <Tag size={20} />,
-    submenu: [
-      { href: '/admin/promotions', label: 'Promotions', icon: <Tag size={16} /> },
-      { href: '/admin/campaigns', label: 'Homepage Campaigns', icon: <Zap size={16} /> },
-      { href: '/admin/featured-offers', label: 'Featured Offers', icon: <Star size={16} /> },
-    ]
-  },
+  // {
+  //   label: 'Marketing',
+  //   icon: <Tag size={20} />,
+  //   submenu: [
+  //     { href: '/admin/promotions', label: 'Promotions', icon: <Tag size={16} /> },
+  //     { href: '/admin/campaigns', label: 'Homepage Campaigns', icon: <Zap size={16} /> },
+  //     { href: '/admin/featured-offers', label: 'Featured Offers', icon: <Star size={16} /> },
+  //   ]
+  // },
 
   // System
   {
