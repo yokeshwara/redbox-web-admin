@@ -14,6 +14,7 @@ import { branchesAPI } from '@/lib/api/branches'
 import { isAuthenticated } from '@/lib/auth'
 
 export default function BranchesPage() {
+
   const [branches, setBranches] = useState<any[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [showModal, setShowModal] = useState(false)
@@ -28,13 +29,11 @@ export default function BranchesPage() {
   const [error, setError] = useState<string | null>(null)
   const [authenticated, setAuthenticated] = useState(false)
 
-  // ✅ FIX: add totalPages + totalItems from API
   const [totalItems, setTotalItems] = useState(0)
   const [totalPages, setTotalPages] = useState(1)
 
   const itemsPerPage = 5
 
-  // Auth check
   useEffect(() => {
     const isAuth = isAuthenticated()
     setAuthenticated(isAuth)
@@ -44,7 +43,6 @@ export default function BranchesPage() {
     }
   }, [])
 
-  // Load when page/search changes
   useEffect(() => {
     if (authenticated) {
       loadBranches()
@@ -57,17 +55,12 @@ export default function BranchesPage() {
       setError(null)
 
       const res = await branchesAPI.listBranches(currentPage, itemsPerPage, searchTerm)
-
-      // ✅ FIX: correct response mapping
       const data = res?.data || res
 
       if (data?.results) {
         setBranches(data.results)
-
-        // ✅ IMPORTANT FIX
         setTotalItems(data.pagination?.total_items || 0)
         setTotalPages(data.pagination?.total_pages || 1)
-
       } else if (Array.isArray(data)) {
         setBranches(data)
         setTotalItems(data.length)
@@ -85,14 +78,17 @@ export default function BranchesPage() {
   const handleAddBranch = async (formData: any) => {
     try {
       setLoading(true)
+
       if (editingBranch) {
         await branchesAPI.updateBranch(editingBranch.id, formData)
         setEditingBranch(null)
       } else {
         await branchesAPI.createBranch(formData)
       }
+
       await loadBranches()
       setShowModal(false)
+
     } catch {
       setError('Failed to save branch')
     } finally {
@@ -128,11 +124,19 @@ export default function BranchesPage() {
     }
   }
 
+  const handleOpenGallery = (branch: any) => {
+    setSelectedBranch(branch)
+    setShowGalleryModal(true)
+  }
+
+  const handleUpdateBranchGallery = (updatedBranch: any) => {
+    setBranches(branches.map((b) => (b.id === updatedBranch.id ? updatedBranch : b)))
+  }
+
   const columns = [
     {
       header: 'Gallery',
       accessor: 'gallery_id',
-      width: '80px',
       render: (value: number, row: any) => (
         <a href={`/admin/gallery/${row.id}`} className="flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-lg text-sm font-semibold">
           <ImageIcon size={16} />
@@ -143,23 +147,26 @@ export default function BranchesPage() {
     {
       header: 'Map',
       accessor: 'map_id',
-      width: '80px',
       render: (value: number, row: any) => (
-        <button onClick={() => { setSelectedBranch(row); setShowMapShareModal(true) }}
-          className="flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-lg text-sm font-semibold">
+        <button
+          onClick={() => {
+            setSelectedBranch(row)
+            setShowMapShareModal(true)
+          }}
+          className="flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-lg text-sm font-semibold"
+        >
           <MapPin size={16} />
           View
         </button>
       ),
     },
-    { header: 'Branch Name', accessor: 'name', width: '180px' },
-    { header: 'City', accessor: 'city', width: '120px' },
-    { header: 'Operating Hours', accessor: 'operating_hours', width: '160px' },
-    { header: 'Delivery Time', accessor: 'delivery_time', width: '140px' },
+    { header: 'Branch Name', accessor: 'name' },
+    { header: 'City', accessor: 'city' },
+    { header: 'Operating Hours', accessor: 'operating_hours' },
+    { header: 'Delivery Time', accessor: 'delivery_time' },
     {
       header: 'Rating',
       accessor: 'rating',
-      width: '100px',
       render: (value: number) => (
         <div className="flex items-center gap-1">
           <Star size={16} className="text-yellow-500 fill-yellow-500" />
@@ -170,21 +177,21 @@ export default function BranchesPage() {
     {
       header: 'Reviews',
       accessor: 'reviews',
-      width: '100px',
       render: (value: any) => {
         let count = Array.isArray(value) ? value.length : value || 0
-        return <span className="text-sm font-semibold text-gray-600">{count} reviews</span>
+        return <span>{count} reviews</span>
       },
     },
-    { header: 'Phone', accessor: 'phone', width: '140px' },
-    { header: 'Email', accessor: 'email', width: '200px' },
+    { header: 'Phone', accessor: 'phone' },
+    { header: 'Email', accessor: 'email' },
     {
       header: 'Status',
       accessor: 'status',
-      width: '100px',
       render: (value: string) => (
         <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-          value === 'ACTIVE' ? 'bg-green-500/20 text-green-500' : 'bg-yellow-500/20 text-yellow-500'
+          value === 'ACTIVE'
+            ? 'bg-green-500/20 text-green-500'
+            : 'bg-yellow-500/20 text-yellow-500'
         }`}>
           {value}
         </span>
@@ -220,7 +227,7 @@ export default function BranchesPage() {
 
           <Pagination
             currentPage={currentPage}
-            totalPages={totalPages}   // ✅ FIXED
+            totalPages={totalPages}
             onPageChange={setCurrentPage}
             totalItems={totalItems}
             itemsPerPage={itemsPerPage}
@@ -228,6 +235,41 @@ export default function BranchesPage() {
         </div>
 
       </div>
+
+      {/* MODALS */}
+      {showModal && (
+        <BranchFormModal
+          branch={editingBranch}
+          onSubmit={handleAddBranch}
+          onClose={() => {
+            setShowModal(false)
+            setEditingBranch(null)
+          }}
+          onOpenGallery={handleOpenGallery}
+        />
+      )}
+
+      {showMapModal && (
+        <BranchMapModal
+          branches={branches}
+          onClose={() => setShowMapModal(false)}
+        />
+      )}
+
+      {showMapShareModal && selectedBranch && (
+        <BranchMapShareModal
+          branch={selectedBranch}
+          onClose={() => setShowMapShareModal(false)}
+        />
+      )}
+
+      {showGalleryModal && selectedBranch && (
+        <BranchGalleryModal
+          branch={selectedBranch}
+          onClose={() => setShowGalleryModal(false)}
+          onUpdateBranch={handleUpdateBranchGallery}
+        />
+      )}
     </AdminLayout>
   )
 }
