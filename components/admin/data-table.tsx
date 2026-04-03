@@ -32,7 +32,7 @@ export function DataTable({ columns, data, onEdit, onDelete, onView, actions = t
                   {col.header}
                 </th>
               ))}
-              {actions && <th className="px-3 md:px-6 py-4 md:py-5 text-left text-xs md:text-sm font-bold text-foreground uppercase tracking-wide"></th>}
+              {actions && <th className="px-3 md:px-6 py-4 md:py-5 text-left text-xs md:text-sm font-bold text-foreground uppercase tracking-wide">⚙️ Actions</th>}
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
