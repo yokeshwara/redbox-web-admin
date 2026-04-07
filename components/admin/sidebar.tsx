@@ -106,17 +106,17 @@ const navItems: NavItem[] = [
   // },
 
   // System
-  {
-    label: 'System',
-    icon: <Settings size={20} />,
-    submenu: [
-      { href: '/admin/users-roles', label: 'Users & Roles', icon: <Users size={16} /> },
-      { href: '/admin/seo-settings', label: 'SEO Settings', icon: <Settings size={16} /> },
-      { href: '/admin/website-settings', label: 'Website Settings', icon: <Settings size={16} /> },
-      { href: '/admin/audit-logs', label: 'Audit Logs', icon: <Clock size={16} /> },
-      { href: '/admin/notifications', label: 'Notifications', icon: <Bell size={16} /> },
-    ]
-  },
+  // {
+  //   label: 'System',
+  //   icon: <Settings size={20} />,
+  //   submenu: [
+  //     { href: '/admin/users-roles', label: 'Users & Roles', icon: <Users size={16} /> },
+  //     { href: '/admin/seo-settings', label: 'SEO Settings', icon: <Settings size={16} /> },
+  //     { href: '/admin/website-settings', label: 'Website Settings', icon: <Settings size={16} /> },
+  //     { href: '/admin/audit-logs', label: 'Audit Logs', icon: <Clock size={16} /> },
+  //     { href: '/admin/notifications', label: 'Notifications', icon: <Bell size={16} /> },
+  //   ]
+  // },
 ]
 
 export function Sidebar() {
@@ -295,7 +295,7 @@ export function Sidebar() {
         </nav>
 
         {/* Logout Section */}
-        <div className="p-4 border-t-2 border-primary/20 bg-gradient-to-r from-primary/5 to-transparent">
+        {/* <div className="p-4 border-t-2 border-primary/20 bg-gradient-to-r from-primary/5 to-transparent">
           <button
             onClick={handleLogout}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-primary hover:bg-primary/20 hover:text-primary font-bold transition-colors whitespace-nowrap"
@@ -303,7 +303,7 @@ export function Sidebar() {
             <LogOut size={20} />
             <span className="font-medium">Logout</span>
           </button>
-        </div>
+        </div> */}
       </aside>
 
       {/* Branding Modal */}
