@@ -49,10 +49,10 @@ const navItems: NavItem[] = [
       { href: '/admin/facilities', label: 'Branch Facilities', icon: <Zap size={16} /> },
       { href: '/admin/branch-reviews', label: 'Branch Reviews', icon: <Star size={16} /> },
       // { href: '/admin/delivery-platforms', label: 'Delivery Platforms', icon: <Zap size={16} /> },
-      // { href: '/admin/menu-categories', label: 'Menu Categories', icon: <Tag size={16} /> },
-      // { href: '/admin/menu', label: 'Menu Items', icon: <UtensilsCrossed size={16} /> },
-      // { href: '/admin/menu-tags', label: 'Menu Tags', icon: <Tag size={16} /> },
-      // { href: '/admin/menu-addons', label: 'Menu Add-ons', icon: <Zap size={16} /> },
+      { href: '/admin/menu-categories', label: 'Menu Categories', icon: <Tag size={16} /> },
+      { href: '/admin/menu', label: 'Menu Items', icon: <UtensilsCrossed size={16} /> },
+      { href: '/admin/menu-tags', label: 'Menu Tags', icon: <Tag size={16} /> },
+      { href: '/admin/menu-addons', label: 'Menu Add-ons', icon: <Zap size={16} /> },
     ]
   },
 
@@ -105,18 +105,18 @@ const navItems: NavItem[] = [
   //   ]
   // },
 
-  // System
-  // {
-  //   label: 'System',
-  //   icon: <Settings size={20} />,
-  //   submenu: [
-  //     { href: '/admin/users-roles', label: 'Users & Roles', icon: <Users size={16} /> },
-  //     { href: '/admin/seo-settings', label: 'SEO Settings', icon: <Settings size={16} /> },
-  //     { href: '/admin/website-settings', label: 'Website Settings', icon: <Settings size={16} /> },
-  //     { href: '/admin/audit-logs', label: 'Audit Logs', icon: <Clock size={16} /> },
-  //     { href: '/admin/notifications', label: 'Notifications', icon: <Bell size={16} /> },
-  //   ]
-  // },
+
+  {
+    label: 'System',
+    icon: <Settings size={20} />,
+    submenu: [
+      { href: '/admin/users-roles', label: 'Users & Roles', icon: <Users size={16} /> },
+      { href: '/admin/seo-settings', label: 'SEO Settings', icon: <Settings size={16} /> },
+      { href: '/admin/website-settings', label: 'Website Settings', icon: <Settings size={16} /> },
+      { href: '/admin/audit-logs', label: 'Audit Logs', icon: <Clock size={16} /> },
+      { href: '/admin/notifications', label: 'Notifications', icon: <Bell size={16} /> },
+    ]
+  },
 ]
 
 export function Sidebar() {

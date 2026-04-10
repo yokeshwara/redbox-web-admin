@@ -10,6 +10,24 @@ interface MenuFormModalProps {
 }
 
 export function MenuFormModal({ item, onSubmit, onClose }: MenuFormModalProps) {
+
+  const normalizeCategory = (value: any) => {
+    if (!value) return 'Appetizers'
+
+    const formatted = value.toString().toLowerCase().replace(/\s/g, '')
+
+    const map: any = {
+      appetizers: 'Appetizers',
+      maincourse: 'Main Course',
+      rice: 'Rice',
+      bread: 'Bread',
+      desserts: 'Desserts',
+      beverages: 'Beverages',
+    }
+
+    return map[formatted] || 'Appetizers'
+  }
+
   const [formData, setFormData] = useState({
     name: '',
     category: 'Appetizers',
@@ -32,7 +50,11 @@ export function MenuFormModal({ item, onSubmit, onClose }: MenuFormModalProps) {
 
   useEffect(() => {
     if (item) {
-      setFormData(item)
+      setFormData((prev) => ({
+        ...prev,
+        ...item,
+        category: normalizeCategory(item.category),
+      }))
     }
   }, [item])
 
@@ -40,7 +62,10 @@ export function MenuFormModal({ item, onSubmit, onClose }: MenuFormModalProps) {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === 'category' ? normalizeCategory(value) : value,
+    }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -90,6 +115,7 @@ export function MenuFormModal({ item, onSubmit, onClose }: MenuFormModalProps) {
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="modal-card max-w-3xl w-full max-h-[95vh] overflow-y-auto">
+        
         {/* Header */}
         <div className="modal-header">
           <div className="flex items-center gap-3">
@@ -117,6 +143,7 @@ export function MenuFormModal({ item, onSubmit, onClose }: MenuFormModalProps) {
               <Star size={20} className="text-primary" />
               <h3 className="text-lg font-bold text-foreground">Basic Information</h3>
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormInput
                 label="Item Name"
@@ -125,16 +152,22 @@ export function MenuFormModal({ item, onSubmit, onClose }: MenuFormModalProps) {
                 onChange={handleChange}
                 placeholder="Enter item name"
               />
+
+              {/* ✅ FIXED CATEGORY DROPDOWN */}
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-foreground">Category</label>
                 <select
                   name="category"
-                  value={formData.category}
+                  value={formData.category || 'Appetizers'}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-white border-2 border-primary/30 rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                  className="w-full px-4 py-2 bg-white text-black border-2 border-primary/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
                 >
                   {categories.map((cat) => (
-                    <option key={cat} value={cat} className="bg-white text-foreground">
+                    <option
+                      key={cat}
+                      value={cat}
+                      style={{ color: '#000', backgroundColor: '#fff' }}
+                    >
                       {cat}
                     </option>
                   ))}

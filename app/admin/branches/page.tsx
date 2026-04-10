@@ -203,6 +203,22 @@ export default function BranchesPage() {
     <AdminLayout>
       <div className="space-y-4 md:space-y-6">
 
+        {/* Header Actions */}
+<div className="flex items-center justify-between">
+  <h1 className="text-2xl font-bold">Branches</h1>
+
+  <button
+    onClick={() => {
+      setEditingBranch(null) // IMPORTANT
+      setShowModal(true)
+    }}
+    className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition"
+  >
+    <Plus size={18} />
+    Add New Branch
+  </button>
+</div>
+
         {/* Search */}
         <div className="flex items-center gap-2 bg-white border-2 border-primary/30 rounded-lg px-4 py-3">
           <Search size={18} className="text-primary" />

@@ -529,16 +529,16 @@ export function BranchFormModal({ branch, onSubmit, onClose }: BranchFormModalPr
             </div>
             <div>
               <div className="form-group">
-                <label className="input-label">Map URL <span className="text-primary ml-1">*</span></label>
+                <label className="input-label">Maps Iframe URL <span className="text-primary ml-1">*</span></label>
                 <textarea
                   name="maps_iframe"
                   value={formData.maps_iframe}
                   onChange={(e) => setFormData({ ...formData, maps_iframe: e.target.value })}
-                  placeholder='Paste Google Map link to share URL'
+                  placeholder='Paste Google Maps location url'
                   className="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary bg-white text-gray-900 resize-none"
                   rows={3}
                 />
-                <p className="text-xs text-gray-500 mt-2">Copy the embed code from Google Maps and paste it here</p>
+                <p className="text-xs text-gray-500 mt-2">Copy the map url from Google Maps and paste it here</p>
               </div>
               <FormError errors={errors} fieldName="maps_iframe" />
             </div>
